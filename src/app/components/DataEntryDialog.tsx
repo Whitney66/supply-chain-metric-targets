@@ -24,7 +24,8 @@ const INDICATOR_OPTIONS = [
   "监管仓-周转仓调拨平均时效",
 ];
 
-const CATEGORY_OPTIONS = ["香化", "酒水"];
+const CATEGORY_OPTIONS = ["香化", "酒水", "全部品类"];
+const UNIT_OPTIONS = ["D", "%"];
 
 interface DataEntryDialogProps {
   open: boolean;
@@ -46,6 +47,7 @@ export function DataEntryDialog({
     indicatorName: '',
     category: '',
     targetValue: '',
+    targetUnit: 'D',
   });
 
   useEffect(() => {
@@ -55,6 +57,7 @@ export function DataEntryDialog({
         indicatorName: initialData.indicatorName,
         category: initialData.category,
         targetValue: initialData.targetValue,
+        targetUnit: initialData.targetUnit,
       });
     } else {
       setFormData({
@@ -62,6 +65,7 @@ export function DataEntryDialog({
         indicatorName: '',
         category: '',
         targetValue: '',
+        targetUnit: 'D',
       });
     }
   }, [initialData, open]);
@@ -138,16 +142,33 @@ export function DataEntryDialog({
 
           <div className="space-y-2">
             <Label htmlFor="targetValue">目标值</Label>
-            <Input
-              id="targetValue"
-              type="text"
-              placeholder="请输入目标值"
-              value={formData.targetValue}
-              onChange={(e) =>
-                setFormData({ ...formData, targetValue: e.target.value })
-              }
-              required
-            />
+            <div className="grid grid-cols-[1fr_96px] gap-2">
+              <Input
+                id="targetValue"
+                type="text"
+                placeholder="请输入目标值"
+                value={formData.targetValue}
+                onChange={(e) =>
+                  setFormData({ ...formData, targetValue: e.target.value })
+                }
+                required
+              />
+              <select
+                id="targetUnit"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                value={formData.targetUnit}
+                onChange={(e) =>
+                  setFormData({ ...formData, targetUnit: e.target.value })
+                }
+                required
+              >
+                {UNIT_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="flex justify-end gap-3 pt-4">

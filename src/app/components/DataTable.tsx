@@ -101,6 +101,9 @@ export function DataTable({
               <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">
                 <span className="text-red-500">*</span> 目标值
               </th>
+              <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">
+                <span className="text-red-500">*</span> 单位
+              </th>
               <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">更新人员</th>
               <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">更新时间</th>
               <th className="px-4 py-3 text-left text-sm font-bold text-gray-700">操作</th>
@@ -109,7 +112,7 @@ export function DataTable({
           <tbody className="divide-y divide-gray-200">
             {currentRecords.length === 0 ? (
               <tr>
-                <td colSpan={showMultiSelect ? 8 : 7} className="px-4 py-8 text-center text-gray-500">
+                <td colSpan={showMultiSelect ? 9 : 8} className="px-4 py-8 text-center text-gray-500">
                   暂无数据
                 </td>
               </tr>
@@ -130,6 +133,7 @@ export function DataTable({
                   <td className="px-4 py-3 text-sm text-gray-700">{record.indicatorName}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{record.category}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{record.targetValue}</td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{record.targetUnit}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{record.updatedBy}</td>
                   <td className="px-4 py-3 text-sm text-gray-700">{record.updatedAt}</td>
                   <td className="px-4 py-3 text-sm">
@@ -142,7 +146,7 @@ export function DataTable({
                       </button>
                       <button
                         onClick={() => {
-                          if (window.confirm(`确定要删除以下记录吗？\n\n指标名称：${record.indicatorName}\n生效日期：${record.effectiveDate}\n目标值：${record.targetValue}`)) {
+                          if (window.confirm(`确定要删除以下记录吗？\n\n指标名称：${record.indicatorName}\n生效日期：${record.effectiveDate}\n目标值：${record.targetValue}${record.targetUnit}`)) {
                             onDelete(record.id);
                           }
                         }}

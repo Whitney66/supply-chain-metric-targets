@@ -14,6 +14,7 @@ export interface LogisticsRecord {
   indicatorName: string;
   category: string;
   targetValue: string;
+  targetUnit: string;
   updatedBy: string;
   updatedAt: string;
 }
@@ -25,7 +26,8 @@ function App() {
       effectiveDate: '2026-03-01',
       indicatorName: '全链路订货平均时效（一盘货）',
       category: '香化',
-      targetValue: '2.5天',
+      targetValue: '2.5',
+      targetUnit: 'D',
       updatedBy: '张三',
       updatedAt: '2026-03-13 10:30',
     },
@@ -34,7 +36,8 @@ function App() {
       effectiveDate: '2026-03-01',
       indicatorName: '仓库入库平均时效',
       category: '酒水',
-      targetValue: '1.8天',
+      targetValue: '1.8',
+      targetUnit: 'D',
       updatedBy: '李四',
       updatedAt: '2026-03-13 11:15',
     },
